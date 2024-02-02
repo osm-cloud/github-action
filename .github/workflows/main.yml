@@ -11,7 +11,7 @@ jobs:
   deploy_source:
     name: deploy lambda by push
     runs-on: ubuntu-latest
-      steps:
+        steps:
         - name: checkout
           uses: actions/checkout@v3
         - name: config aws credentials
