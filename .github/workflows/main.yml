@@ -23,8 +23,6 @@ jobs:
           function_name: skills-function
           memory_size: 128
           timeout: 3
-      - name: install node_modules
-        run: npm install
       - name: zip Lambda Function
         run: zip -r9 function_name.zip *
       - name: update code
