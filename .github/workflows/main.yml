@@ -1,0 +1,36 @@
+name: deploy to lambda
+on:
+    push:
+      branches: [ master ]
+      paths:
+      - '**.yaml'
+      - '**.yml'
+jobs:
+	deploy_lambda: 
+    	name: lambda-runtime
+        runs-on: ubuntu-latest
+    strategy:
+        steps:
+          - name: Chekcout
+          uses: actions/checkout@v4
+        steps:
+        	- name: Configure AWS credentials from Test account
+              uses: aws-actions/configure-aws-credentials@v1
+              with:
+                aws-access-key-id: [ACCESS Key ID]
+                aws-secret-access-key: [Secret ACCESS Key]
+                aws-region: ap-northeast-2
+        	- name: Set up Python
+              uses: actions/setup-python@v2
+              with:
+                python-version: '3.12'
+        	- name: Zipping binary
+              uses: papeloto/action-zip@v1
+              with: 
+                files: .
+                dest: test.zip
+        	- name: Deploy function
+              run: |
+                aws lambda update-function-code
+                --function-name skills-lambda
+                --zip-file fileb://test.zip
