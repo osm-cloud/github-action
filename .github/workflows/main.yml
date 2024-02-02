@@ -26,4 +26,4 @@ jobs:
       - name: zip Lambda Function
         run: zip -r9 function_name.zip *
       - name: update code
-        run: aws lambda update-function-code --function-name skills-function --zip-file fileb://#function_name.zip
+        run: aws lambda update-function-code --function-name skills-function --zip-file fileb://function_name.zip
