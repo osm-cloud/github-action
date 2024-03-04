@@ -1,4 +1,4 @@
-#!/usr/bin
+#!/usr/bin/python3.12
 from flask import Flask, abort, request, jsonify
 import logging
 
