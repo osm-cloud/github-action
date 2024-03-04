@@ -19,7 +19,10 @@ jobs:
     steps:
     - name: Checkout release
       uses: actions/checkout@v4
-       
+
+    - name: List files after checkout
+      run: ls
+
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
