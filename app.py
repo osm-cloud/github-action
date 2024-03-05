@@ -12,7 +12,7 @@ def get_color():
         logging.error(e)
         abort(500)
 
-@app.route('/health', methods=['GET'])
+@app.route('/', methods=['GET'])
 def get_health():
     try:
         ret = {'status': 'ok'}
