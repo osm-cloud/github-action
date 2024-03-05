@@ -11,8 +11,8 @@ env:
   ECR_REPOSITORY: skills-repo
   ECS_SERVICE: skills-svc
   ECS_CLUSTER: skills-cluster
-  TD_NAME: skills-container
-  CONTAINER_NAME: skills-task-definition
+  TD_NAME: skills-task-definition
+  CONTAINER_NAME: skills-container
 
 jobs:
   deploy:
