@@ -1,13 +1,5 @@
 #!/usr/bin/python3.12
 from flask import Flask, abort, request, jsonify
-import logging
-
-logging.basicConfig(
-    format='%(asctime)s %(levelname)s %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S',
-    filename="/var/log/app/app.log",
-    level=logging.INFO
-)
 
 app = Flask(__name__)
 
