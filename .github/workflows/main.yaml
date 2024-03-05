@@ -55,6 +55,11 @@ jobs:
           container-name: ${{ env.CONTAINER_NAME }}
           image: ${{ steps.build-image.outputs.image }}
 
+      - name: chang chcke path
+        run: |
+          ALB_TG_ARN=$(aws elbv2 describe-target-groups --query "TargetGroups[].TargetGroupArn[]" --output text)
+          aws elbv2 modify-target-group --target-group-arn $ALB_TG_ARN --health-check-path /health
+
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
@@ -62,7 +67,3 @@ jobs:
           service: ${{ env.ECS_SERVICE }}
           cluster: ${{ env.ECS_CLUSTER }}
           wait-for-service-stability: true
-      - name: chang chcke path
-        run: |
-          ALB_TG_ARN=$(aws elbv2 describe-target-groups --query "TargetGroups[].TargetGroupArn[]" --output text)
-          aws elbv2 modify-target-group --target-group-arn $ALB_TG_ARN --health-check-path /health
