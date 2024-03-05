@@ -62,3 +62,9 @@ jobs:
           service: ${{ env.ECS_SERVICE }}
           cluster: ${{ env.ECS_CLUSTER }}
           wait-for-service-stability: true
+      - name: chang chcke path
+        run: |
+          ALB_TG_ARN=$(aws elbv2 describe-target-groups --query "TargetGroups[].TargetGroupArn[]" --output text --profile osm-soft)
+          aws elbv2 modify-target-group \
+              --target-group-arn $ALB_TG_ARN \
+              --health-check-path /healthz
