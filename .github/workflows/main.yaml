@@ -9,10 +9,13 @@ on:
 env:
   AWS_REGION: ap-northeast-2
   ECR_REPOSITORY: skills-repo
-  ECS_SERVICE: skills-service
   ECS_CLUSTER: skills-cluster
-  TD_NAME: github-task
-  CONTAINER_NAME: skills-container
+  ECS_SERVICE: skills-svc
+  ECS_TD: skills-github-task
+  CONTAINER_NAME: nginx
+  ECS_APP: AppECS-skills-cluster-skills-svc
+  ECS_DG: DgpECS-skills-cluster-skills-svc
+  ECS_APPSPEC: appspec.yml
 
 jobs:
   deploy:
@@ -68,3 +71,14 @@ jobs:
           service: ${{ env.ECS_SERVICE }}
           cluster: ${{ env.ECS_CLUSTER }}
           wait-for-service-stability: true
+
+    - name: Deploy to Amazon ECS
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: ${{ steps.task-def.outputs.task-definition }}
+        service: ${{ env.ECS_SERVICE }}
+        cluster: ${{ env.ECS_CLUSTER }}
+        wait-for-service-stability: true
+        codedeploy-appspec: ${{ env.ECS_APPSPEC }}
+        codedeploy-application: ${{ env.ECS_APP }}
+        codedeploy-deployment-group: ${{ env.ECS_DG }}
