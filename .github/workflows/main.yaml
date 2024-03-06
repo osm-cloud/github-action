@@ -9,9 +9,9 @@ on:
 env:
   AWS_REGION: ap-northeast-2
   ECR_REPOSITORY: skills-repo
-  ECS_SERVICE: skills-svc
+  ECS_SERVICE: skills-service
   ECS_CLUSTER: skills-cluster
-  TD_NAME: skills-task-definition
+  TD_NAME: github-task
   CONTAINER_NAME: skills-container
 
 jobs:
