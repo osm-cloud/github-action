@@ -62,8 +62,8 @@ jobs:
 
       - name: Change check path
         run: |
-          ALB_TG_1_ARN=$(aws elbv2 describe-target-groups --query "TargetGroups[].TargetGroupArn[]" --output text | awk -F, '{print $1}')
-          ALB_TG_2_ARN=$(aws elbv2 describe-target-groups --query "TargetGroups[].TargetGroupArn[]" --output text | awk -F, '{print $2}')
+          ALB_TG_1_ARN=$(aws elbv2 describe-target-groups --query "TargetGroups[].TargetGroupArn[]" --output text | awk -F" " '{print $1}')
+          ALB_TG_2_ARN=$(aws elbv2 describe-target-groups --query "TargetGroups[].TargetGroupArn[]" --output text | awk -F" " '{print $2}')
           echo $ALB_TG_1_ARN
           echo $ALB_TG_2_ARN
           aws elbv2 modify-target-group --target-group-arn $ALB_TG_1_ARN --health-check-path /health --health-check-port 80
