@@ -59,7 +59,7 @@ jobs:
         run: |
           ALB_TG_ARN=$(aws elbv2 describe-target-groups --query "TargetGroups[].TargetGroupArn[]" --output text)
           echo $ALB_TG_ARN
-          aws elbv2 modify-target-group --target-group-arn $ALB_TG_ARN --health-check-path /health
+          aws elbv2 modify-target-group --target-group-arn $ALB_TG_ARN --health-check-path /health --health-check-port 8080
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
