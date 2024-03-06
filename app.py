@@ -11,7 +11,7 @@ def get_color():
     except Exception as e:
         abort(500)
 
-@app.route('/', methods=['GET'])
+@app.route('/health', methods=['GET'])
 def get_health():
     try:
         ret = {'status': 'ok'}
