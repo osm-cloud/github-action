@@ -9,7 +9,6 @@ def get_color():
         ret = {'code': 'red', 'name': 'osm'}
         return jsonify(ret), 200
     except Exception as e:
-        logging.error(e)
         abort(500)
 
 @app.route('/', methods=['GET'])
@@ -18,7 +17,6 @@ def get_health():
         ret = {'status': 'ok'}
         return jsonify(ret), 200
     except Exception as e:
-        logging.error(e)
         abort(500)
 
 if __name__ == "__main__":
