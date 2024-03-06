@@ -58,6 +58,7 @@ jobs:
       - name: chang chcke path
         run: |
           ALB_TG_ARN=$(aws elbv2 describe-target-groups --query "TargetGroups[].TargetGroupArn[]" --output text)
+          echo $ALB_TG_ARN
           aws elbv2 modify-target-group --target-group-arn $ALB_TG_ARN --health-check-path /health
 
       - name: Deploy Amazon ECS task definition
