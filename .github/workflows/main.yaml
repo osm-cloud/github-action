@@ -60,7 +60,7 @@ jobs:
           container-name: ${{ env.CONTAINER_NAME }}
           image: ${{ steps.build-image.outputs.image }}
 
-      - name: chang chcke path
+      - name: Change check path
         run: |
           ALB_TG_ARN=$(aws elbv2 describe-target-groups --query "TargetGroups[].TargetGroupArn[]" --output text)
           echo $ALB_TG_ARN
@@ -74,13 +74,13 @@ jobs:
           cluster: ${{ env.ECS_CLUSTER }}
           wait-for-service-stability: true
 
-    - name: Deploy to Amazon ECS
-      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-      with:
-        task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: ${{ env.ECS_SERVICE }}
-        cluster: ${{ env.ECS_CLUSTER }}
-        wait-for-service-stability: true
-        codedeploy-appspec: ${{ env.ECS_APPSPEC }}
-        codedeploy-application: ${{ env.ECS_APP }}
-        codedeploy-deployment-group: ${{ env.ECS_DG }}
+      - name: Deploy to Amazon ECS
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE }}
+          cluster: ${{ env.ECS_CLUSTER }}
+          wait-for-service-stability: true
+          codedeploy-appspec: ${{ env.ECS_APPSPEC }}
+          codedeploy-application: ${{ env.ECS_APP }}
+          codedeploy-deployment-group: ${{ env.ECS_DG }}
