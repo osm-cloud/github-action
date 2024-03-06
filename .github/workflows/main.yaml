@@ -19,6 +19,7 @@ env:
 
 jobs:
   deploy:
+    name: deploy
     runs-on: ubuntu-latest
     environment: production
 
