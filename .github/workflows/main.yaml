@@ -69,14 +69,6 @@ jobs:
           aws elbv2 modify-target-group --target-group-arn $ALB_TG_1_ARN --health-check-path /health --health-check-port 80
           aws elbv2 modify-target-group --target-group-arn $ALB_TG_2_ARN --health-check-path /health --health-check-port 80
 
-      - name: Deploy Amazon ECS task definition
-        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-        with:
-          task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: ${{ env.ECS_SERVICE }}
-          cluster: ${{ env.ECS_CLUSTER }}
-          wait-for-service-stability: true
-
       - name: Deploy to Amazon ECS
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
