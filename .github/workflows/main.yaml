@@ -10,11 +10,11 @@ env:
   AWS_REGION: ap-northeast-2
   ECR_REPOSITORY: skills-repo
   ECS_CLUSTER: skills-cluster
-  ECS_SERVICE: skills-svc
+  ECS_SERVICE: skills-service
   ECS_TD: skills-github-task
   CONTAINER_NAME: nginx
-  ECS_APP: AppECS-skills-cluster-skills-svc
-  ECS_DG: DgpECS-skills-cluster-skills-svc
+  ECS_APP: AppECS-skills-cluster-skills-service
+  ECS_DG: DgpECS-skills-cluster-skills-service
   ECS_APPSPEC: appspec.yml
 
 jobs:
